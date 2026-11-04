@@ -80,7 +80,7 @@ const getAuthorRole = (art) => {
                 class="w-12 h-12 rounded-full object-cover ring-2 ring-accent/80 shadow-sm flex-shrink-0"
               />
               <div class="min-w-0">
-                <h4 class="text-xs font-bold text-ink truncate">
+                <h4 class="text-xs font-bold text-ink dark:text-zinc-100 truncate">
                   {{ getAuthorName(art) }}
                 </h4>
                 <p class="text-[11px] text-accent font-medium truncate font-mono">
@@ -90,19 +90,19 @@ const getAuthorRole = (art) => {
             </div>
 
             <!-- Headline (Playfair Display) -->
-            <h3 class="text-base sm:text-lg font-serif font-bold text-ink group-hover:text-accent transition-colors leading-snug mb-3 line-clamp-3">
+            <h3 class="text-base sm:text-lg font-serif font-bold text-ink dark:text-zinc-100 group-hover:text-accent transition-colors leading-snug mb-3 line-clamp-3">
               <Link :href="`/article/${art.slug}`">
                 {{ getTitle(art) }}
               </Link>
             </h3>
 
             <!-- Pull-Quote Style Italic Excerpt -->
-            <blockquote class="text-xs sm:text-sm text-muted font-editorial italic line-clamp-3 leading-relaxed border-l-2 border-accent/40 pl-3">
+            <blockquote class="text-xs sm:text-sm text-muted dark:text-zinc-300 font-editorial italic line-clamp-3 leading-relaxed border-l-2 border-accent/40 pl-3">
               “{{ getSubtitle(art) }}”
             </blockquote>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[11px] text-muted">
+          <div class="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[11px] text-muted dark:text-zinc-400">
             <span class="uppercase tracking-widest font-semibold text-[10px] text-accent font-mono">
               {{ art.type === 'editorial' ? 'Editorial' : 'Column' }}
             </span>

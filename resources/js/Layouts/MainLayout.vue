@@ -573,8 +573,48 @@ onUnmounted(() => {
               {{ $t('nav.live') }}
             </a>
 
+            <!-- Indian Express EXPLAINED in Mobile Drawer -->
+            <a
+              href="#explained"
+              @click="isMobileMenuOpen = false"
+              class="flex items-center justify-between text-sm font-black uppercase tracking-wider text-gray-900 dark:text-white hover:text-[#C8102E]"
+            >
+              <span>{{ $t('nav.explained') }}</span>
+              <span class="bg-[#C8102E] text-white text-[9px] font-black px-1.5 py-0.5 rounded-sm font-mono">NEW</span>
+            </a>
+
+            <!-- Regional Cities in Mobile Drawer -->
+            <a
+              href="#cities"
+              @click="isMobileMenuOpen = false"
+              class="block text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-white hover:text-[#C8102E]"
+            >
+              {{ $t('home.citiesTitle') }}
+            </a>
+
+            <!-- User Specific Links if Authenticated -->
+            <div v-if="authUser" class="pt-2 pb-1 border-t border-gray-100 dark:border-zinc-800 space-y-2">
+              <Link
+                href="/bookmarks"
+                @click="isMobileMenuOpen = false"
+                class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-zinc-300 hover:text-[#C8102E]"
+              >
+                <Bookmark class="w-3.5 h-3.5 text-gray-400" />
+                <span>{{ $t('nav.savedArticles') }}</span>
+              </Link>
+
+              <a
+                v-if="canAccessAdmin"
+                href="/admin"
+                class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C8102E]"
+              >
+                <LayoutDashboard class="w-3.5 h-3.5 text-[#C8102E]" />
+                <span>{{ $t('nav.adminDashboard') }}</span>
+              </a>
+            </div>
+
             <div class="pt-2 pb-1 border-t border-gray-100 dark:border-zinc-800">
-              <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 block">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-zinc-400 mb-2 block">
                 {{ $t('nav.menu') }}
               </span>
               <div class="space-y-2.5">
@@ -594,21 +634,35 @@ onUnmounted(() => {
 
         <!-- Footer of Drawer -->
         <div class="pt-6 border-t border-gray-200 dark:border-zinc-800 space-y-4">
+          <!-- Theme Toggle inside Drawer -->
           <div class="flex items-center justify-between">
-            <span class="text-xs font-medium text-gray-500">Edition / भाषा</span>
-            <div class="flex gap-2">
+            <span class="text-xs font-medium text-gray-600 dark:text-zinc-400">Theme / मोड</span>
+            <button
+              @click="newsStore.toggleTheme"
+              class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-zinc-200 text-xs font-semibold border border-gray-200 dark:border-zinc-700 transition-colors"
+            >
+              <Sun v-if="newsStore.theme === 'dark'" class="w-3.5 h-3.5 text-amber-400" />
+              <Moon v-else class="w-3.5 h-3.5 text-zinc-600" />
+              <span>{{ newsStore.theme === 'dark' ? 'Dark' : 'Light' }}</span>
+            </button>
+          </div>
+
+          <!-- Language Switcher in Drawer -->
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-gray-600 dark:text-zinc-400">Edition / भाषा</span>
+            <div class="flex items-center gap-2">
               <button
                 @click="switchLanguage('en')"
-                :class="currentLocale === 'en' ? 'font-bold text-[#C8102E]' : 'text-gray-400'"
-                class="text-xs"
+                :class="currentLocale === 'en' ? 'font-bold text-[#C8102E]' : 'text-gray-700 dark:text-zinc-300 hover:text-black dark:hover:text-white'"
+                class="text-xs transition-colors"
               >
                 English
               </button>
-              <span>|</span>
+              <span class="text-gray-300 dark:text-zinc-700">|</span>
               <button
                 @click="switchLanguage('hi')"
-                :class="currentLocale === 'hi' ? 'font-bold text-[#C8102E]' : 'text-gray-400'"
-                class="text-xs font-hindi"
+                :class="currentLocale === 'hi' ? 'font-bold text-[#C8102E]' : 'text-gray-700 dark:text-zinc-300 hover:text-black dark:hover:text-white'"
+                class="text-xs font-hindi transition-colors"
               >
                 हिन्दी
               </button>
@@ -617,7 +671,7 @@ onUnmounted(() => {
 
           <a
             href="#subscribe"
-            class="block w-full text-center bg-[#C8102E] text-white font-bold text-xs uppercase tracking-wider py-3 rounded"
+            class="block w-full text-center bg-[#C8102E] hover:bg-[#A00D24] text-white font-bold text-xs uppercase tracking-wider py-3 rounded shadow-sm transition-colors"
           >
             {{ $t('nav.subscribe') }}
           </a>

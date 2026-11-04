@@ -122,7 +122,7 @@ const takeaways = computed(() => {
             <!-- Headline -->
             <Link
               :href="`/article/${story.slug}`"
-              class="block font-serif font-bold text-sm sm:text-base text-ink group-hover:text-[#C8102E] transition-colors leading-snug line-clamp-3 mb-2"
+              class="block font-serif font-bold text-sm sm:text-base text-ink dark:text-zinc-100 group-hover:text-[#C8102E] transition-colors leading-snug line-clamp-3 mb-2"
             >
               {{ getTitle(story) }}
             </Link>
@@ -173,24 +173,24 @@ const takeaways = computed(() => {
 
             <!-- Lead Headline -->
             <Link :href="`/article/${leadStory.slug}`">
-              <h1 class="font-serif font-black text-2xl sm:text-3xl md:text-[34px] leading-[1.18] text-ink group-hover:text-[#C8102E] transition-colors tracking-tight mb-2.5">
+              <h1 class="font-serif font-black text-2xl sm:text-3xl md:text-[34px] leading-[1.18] text-ink dark:text-white group-hover:text-[#C8102E] transition-colors tracking-tight mb-2.5">
                 {{ getTitle(leadStory) }}
               </h1>
             </Link>
 
             <!-- Lead Excerpt -->
-            <p class="font-editorial text-sm sm:text-base text-muted leading-relaxed line-clamp-3 mb-3.5">
+            <p class="font-editorial text-sm sm:text-base text-muted dark:text-zinc-300 leading-relaxed line-clamp-3 mb-3.5">
               {{ getExcerpt(leadStory) }}
             </p>
 
             <!-- Byline & Timestamp -->
-            <div class="flex items-center justify-between py-2 border-y border-border text-xs text-muted font-sans">
+            <div class="flex items-center justify-between py-2 border-y border-border text-xs text-muted dark:text-zinc-400 font-sans">
               <div class="flex items-center gap-2">
                 <div v-if="leadStory.author && leadStory.author.avatar" class="w-6 h-6 rounded-full overflow-hidden bg-surface border border-border">
                   <img :src="leadStory.author.avatar" :alt="getAuthorName(leadStory)" class="w-full h-full object-cover" />
                 </div>
-                <span class="font-bold text-ink">{{ getAuthorName(leadStory) }}</span>
-                <span class="text-muted/60">•</span>
+                <span class="font-bold text-ink dark:text-zinc-100">{{ getAuthorName(leadStory) }}</span>
+                <span class="text-muted/60 dark:text-zinc-600">•</span>
                 <span class="text-[11px] font-mono uppercase">{{ leadStory.formatted_date || 'Today' }}</span>
               </div>
               <div class="flex items-center gap-1 text-[11px] font-mono">
@@ -213,7 +213,7 @@ const takeaways = computed(() => {
                   <span class="text-[#C8102E] font-bold text-sm leading-none mt-0.5">•</span>
                   <Link
                     :href="`/article/${rel.slug}`"
-                    class="font-serif text-xs sm:text-sm font-semibold text-ink group-hover/rel:text-[#C8102E] transition-colors line-clamp-1 leading-snug"
+                    class="font-serif text-xs sm:text-sm font-semibold text-ink dark:text-zinc-200 group-hover/rel:text-[#C8102E] transition-colors line-clamp-1 leading-snug"
                   >
                     {{ getTitle(rel) }}
                   </Link>
@@ -236,19 +236,19 @@ const takeaways = computed(() => {
                 EXPLAINED
               </span>
             </div>
-            <span class="text-[10px] text-muted uppercase font-mono tracking-wider">CONTEXT</span>
+            <span class="text-[10px] text-muted dark:text-zinc-400 uppercase font-mono tracking-wider">CONTEXT</span>
           </div>
 
           <Link
             v-if="leadStory"
             :href="`/article/${leadStory.slug}`"
-            class="block font-serif font-bold text-sm sm:text-base text-ink hover:text-[#C8102E] transition-colors leading-snug mb-3"
+            class="block font-serif font-bold text-sm sm:text-base text-ink dark:text-zinc-100 hover:text-[#C8102E] transition-colors leading-snug mb-3"
           >
             Explained: {{ getTitle(leadStory) }}
           </Link>
 
           <!-- Key Takeaway Bullets -->
-          <ul class="space-y-2 text-xs text-muted font-sans border-t border-dashed border-border pt-2.5">
+          <ul class="space-y-2 text-xs text-muted dark:text-zinc-200 font-sans border-t border-dashed border-border pt-2.5">
             <li
               v-for="(point, idx) in takeaways"
               :key="idx"
@@ -272,7 +272,7 @@ const takeaways = computed(() => {
         <!-- 2. THE COLUMNIST / OPINION SPOTLIGHT CARD -->
         <div v-if="featuredColumnistStory" class="p-4 bg-paper border border-border rounded-sm">
           <div class="flex items-center justify-between pb-2 mb-3 border-b border-border">
-            <h4 class="text-xs font-bold uppercase tracking-widest text-ink font-mono">
+            <h4 class="text-xs font-bold uppercase tracking-widest text-ink dark:text-zinc-100 font-mono">
               THE COLUMNIST
             </h4>
             <span class="text-[10px] text-[#C8102E] font-mono font-bold uppercase">OPINION</span>
@@ -293,10 +293,10 @@ const takeaways = computed(() => {
             </div>
 
             <div>
-              <h5 class="font-serif font-bold text-sm text-ink leading-tight">
+              <h5 class="font-serif font-bold text-sm text-ink dark:text-zinc-100 leading-tight">
                 {{ getAuthorName(featuredColumnistStory) }}
               </h5>
-              <p class="text-[10px] text-muted mt-0.5 line-clamp-1 font-mono uppercase">
+              <p class="text-[10px] text-muted dark:text-zinc-400 mt-0.5 line-clamp-1 font-mono uppercase">
                 {{ getAuthorRole(featuredColumnistStory) }}
               </p>
             </div>
@@ -305,14 +305,14 @@ const takeaways = computed(() => {
           <!-- Pull Quote Headline -->
           <Link
             :href="`/article/${featuredColumnistStory.slug}`"
-            class="block font-serif italic text-xs sm:text-sm text-ink hover:text-[#C8102E] transition-colors leading-relaxed mb-3 group"
+            class="block font-serif italic text-xs sm:text-sm text-ink dark:text-zinc-200 hover:text-[#C8102E] transition-colors leading-relaxed mb-3 group"
           >
             "{{ getTitle(featuredColumnistStory) }}"
           </Link>
 
           <Link
             :href="`/article/${featuredColumnistStory.slug}`"
-            class="inline-flex items-center gap-1 text-[11px] font-bold text-muted hover:text-[#C8102E] uppercase font-mono tracking-wider transition-colors"
+            class="inline-flex items-center gap-1 text-[11px] font-bold text-muted dark:text-zinc-400 hover:text-[#C8102E] uppercase font-mono tracking-wider transition-colors"
           >
             <span>Read Column</span>
             <ArrowRight class="w-3 h-3" />

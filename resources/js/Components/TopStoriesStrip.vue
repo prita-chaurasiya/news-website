@@ -54,7 +54,7 @@ const getCategory = (art) => {
         <div>
           <!-- Big Ranking Number + Category -->
           <div class="flex items-baseline justify-between mb-2">
-            <span class="font-serif font-black text-2xl sm:text-3xl text-muted/30 group-hover:text-accent transition-colors font-mono">
+            <span class="font-serif font-black text-2xl sm:text-3xl text-muted/40 dark:text-zinc-600 group-hover:text-accent transition-colors font-mono">
               0{{ idx + 1 }}
             </span>
             <span class="text-[10px] font-bold uppercase tracking-wider text-accent font-mono">
@@ -77,7 +77,7 @@ const getCategory = (art) => {
                 rounded="rounded-md"
               />
             </Link>
-            <h4 class="text-xs sm:text-sm font-serif font-bold text-ink group-hover:text-accent transition-colors leading-snug line-clamp-3">
+            <h4 class="text-xs sm:text-sm font-serif font-bold text-ink dark:text-zinc-100 group-hover:text-accent transition-colors leading-snug line-clamp-3">
               <Link :href="`/article/${art.slug}`">
                 {{ getTitle(art) }}
               </Link>
@@ -86,7 +86,7 @@ const getCategory = (art) => {
         </div>
 
         <!-- Meta -->
-        <div class="mt-2 flex items-center justify-between text-[11px] text-muted">
+        <div class="mt-2 flex items-center justify-between text-[11px] text-muted dark:text-zinc-400">
           <span class="flex items-center gap-1 font-mono">
             <Clock class="w-3 h-3" />
             {{ art.reading_time || 4 }} min

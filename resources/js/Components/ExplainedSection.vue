@@ -85,15 +85,15 @@ const subStories = computed(() => safeArticles.value.slice(1, 4));
             </span>
           </div>
 
-          <h3 class="font-serif font-bold text-xl sm:text-2xl text-ink group-hover:text-[#C8102E] transition-colors leading-tight mb-2">
+          <h3 class="font-serif font-bold text-xl sm:text-2xl text-ink dark:text-zinc-100 group-hover:text-[#C8102E] transition-colors leading-tight mb-2">
             Explained: {{ getTitle(mainStory) }}
           </h3>
 
-          <p class="font-editorial text-sm text-muted leading-relaxed line-clamp-2 mb-3">
+          <p class="font-editorial text-sm text-muted dark:text-zinc-300 leading-relaxed line-clamp-2 mb-3">
             {{ getExcerpt(mainStory) }}
           </p>
 
-          <div class="flex items-center gap-2 text-xs font-mono text-muted">
+          <div class="flex items-center gap-2 text-xs font-mono text-muted dark:text-zinc-400">
             <Clock class="w-3.5 h-3.5 text-[#C8102E]" />
             <span>{{ mainStory.reading_time || 5 }} MIN READ</span>
           </div>
@@ -114,17 +114,17 @@ const subStories = computed(() => safeArticles.value.slice(1, 4));
 
             <Link
               :href="`/article/${story.slug}`"
-              class="font-serif font-bold text-sm sm:text-base text-ink group-hover:text-[#C8102E] transition-colors leading-snug line-clamp-3 mb-2 block"
+              class="font-serif font-bold text-sm sm:text-base text-ink dark:text-zinc-100 group-hover:text-[#C8102E] transition-colors leading-snug line-clamp-3 mb-2 block"
             >
               Explained: {{ getTitle(story) }}
             </Link>
 
-            <p class="text-xs text-muted font-editorial line-clamp-2 leading-relaxed">
+            <p class="text-xs text-muted dark:text-zinc-300 font-editorial line-clamp-2 leading-relaxed">
               {{ getExcerpt(story) }}
             </p>
           </div>
 
-          <div class="mt-3 pt-2 border-t border-dashed border-border/80 flex items-center justify-between text-[11px] font-mono text-muted">
+          <div class="mt-3 pt-2 border-t border-dashed border-border/80 flex items-center justify-between text-[11px] font-mono text-muted dark:text-zinc-400">
             <span>{{ story.reading_time || 4 }} MIN</span>
             <Link :href="`/article/${story.slug}`" class="text-[#C8102E] hover:underline font-bold">
               Read →

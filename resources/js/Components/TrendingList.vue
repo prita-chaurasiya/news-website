@@ -63,7 +63,7 @@ const getCategory = (art) => {
             </Link>
           </h4>
 
-          <div class="flex items-center gap-2 text-[11px] text-gray-400 mt-1">
+          <div class="flex items-center gap-2 text-[11px] text-gray-500 dark:text-zinc-400 mt-1">
             <span class="flex items-center gap-0.5">
               <Clock class="w-3 h-3" />
               {{ art.reading_time || 4 }} {{ $t('home.minRead') }}

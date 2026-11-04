@@ -127,19 +127,19 @@ const timeAgo = computed(() => {
           </span>
         </div>
 
-        <h3 class="text-sm sm:text-base font-serif font-bold text-ink group-hover:text-accent transition-colors leading-snug line-clamp-2">
+        <h3 class="text-sm sm:text-base font-serif font-bold text-ink dark:text-zinc-100 group-hover:text-accent transition-colors leading-snug line-clamp-2">
           <Link :href="articleUrl">
             {{ title }}
           </Link>
         </h3>
       </div>
 
-      <div class="flex items-center justify-between text-xs text-muted mt-2">
+      <div class="flex items-center justify-between text-xs text-muted dark:text-zinc-400 mt-2">
         <div class="flex items-center gap-2 truncate text-[11px]">
-          <span class="truncate font-medium">{{ authorName }}</span>
+          <span class="truncate font-medium text-ink dark:text-zinc-200">{{ authorName }}</span>
           <span>•</span>
           <span class="flex-shrink-0 flex items-center gap-1">
-            <Clock class="w-3 h-3 text-muted" />
+            <Clock class="w-3 h-3 text-muted dark:text-zinc-400" />
             {{ timeAgo }}
           </span>
         </div>
@@ -190,7 +190,7 @@ const timeAgo = computed(() => {
       </span>
     </div>
 
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-ink group-hover:text-accent transition-colors leading-[1.18] mb-3">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-ink dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.18] mb-3">
       <Link :href="articleUrl">
         {{ title }}
       </Link>
@@ -198,12 +198,12 @@ const timeAgo = computed(() => {
 
     <p
       v-if="showExcerpt && excerpt"
-      class="text-sm sm:text-base text-muted leading-relaxed mb-4 line-clamp-3 font-editorial"
+      class="text-sm sm:text-base text-muted dark:text-zinc-300 leading-relaxed mb-4 line-clamp-3 font-editorial"
     >
       {{ excerpt }}
     </p>
 
-    <div class="flex items-center justify-between text-xs text-muted pt-3 border-t border-border/80">
+    <div class="flex items-center justify-between text-xs text-muted dark:text-zinc-400 pt-3 border-t border-border/80">
       <div class="flex items-center gap-3">
         <!-- Author photo circle with thin red ring -->
         <img
@@ -213,14 +213,14 @@ const timeAgo = computed(() => {
           class="w-8 h-8 rounded-full object-cover ring-2 ring-accent/80"
         />
         <div class="flex flex-col">
-          <span class="font-semibold text-ink">{{ authorName }}</span>
-          <span class="text-[11px] text-muted">{{ timeAgo }} • {{ article.reading_time || 4 }} {{ $t('home.minRead') }}</span>
+          <span class="font-semibold text-ink dark:text-zinc-100">{{ authorName }}</span>
+          <span class="text-[11px] text-muted dark:text-zinc-400">{{ timeAgo }} • {{ article.reading_time || 4 }} {{ $t('home.minRead') }}</span>
         </div>
       </div>
 
       <button
         @click.prevent="newsStore.toggleBookmark(article.id)"
-        class="p-1.5 rounded-full hover:bg-surface text-muted hover:text-accent transition-colors"
+        class="p-1.5 rounded-full hover:bg-surface text-muted dark:text-zinc-400 hover:text-accent transition-colors"
         :title="isBookmarked ? 'Remove bookmark' : 'Bookmark article'"
         aria-label="Bookmark"
       >
@@ -243,10 +243,10 @@ const timeAgo = computed(() => {
       >
         {{ categoryName }}
       </span>
-      <span class="text-[11px] text-muted">{{ timeAgo }}</span>
+      <span class="text-[11px] text-muted dark:text-zinc-400">{{ timeAgo }}</span>
     </div>
 
-    <h4 class="text-sm font-serif font-bold text-ink group-hover:text-accent transition-colors leading-snug line-clamp-2">
+    <h4 class="text-sm font-serif font-bold text-ink dark:text-zinc-100 group-hover:text-accent transition-colors leading-snug line-clamp-2">
       <Link :href="articleUrl">
         {{ title }}
       </Link>
@@ -289,7 +289,7 @@ const timeAgo = computed(() => {
           </span>
         </div>
 
-        <h3 class="text-base sm:text-lg font-serif font-bold text-ink group-hover:text-accent transition-colors leading-snug mb-2 line-clamp-2">
+        <h3 class="text-base sm:text-lg font-serif font-bold text-ink dark:text-zinc-100 group-hover:text-accent transition-colors leading-snug mb-2 line-clamp-2">
           <Link :href="articleUrl">
             {{ title }}
           </Link>
@@ -297,14 +297,14 @@ const timeAgo = computed(() => {
 
         <p
           v-if="showExcerpt && excerpt"
-          class="text-xs sm:text-sm text-muted line-clamp-2 mb-3 font-editorial leading-relaxed"
+          class="text-xs sm:text-sm text-muted dark:text-zinc-300 line-clamp-2 mb-3 font-editorial leading-relaxed"
         >
           {{ excerpt }}
         </p>
       </div>
 
-      <div class="flex items-center justify-between text-xs text-muted pt-3 border-t border-border mt-auto">
-        <span class="truncate max-w-[140px] font-medium">{{ authorName }}</span>
+      <div class="flex items-center justify-between text-xs text-muted dark:text-zinc-400 pt-3 border-t border-border mt-auto">
+        <span class="truncate max-w-[140px] font-medium text-ink dark:text-zinc-200">{{ authorName }}</span>
         
         <div class="flex items-center gap-2">
           <span>{{ timeAgo }}</span>

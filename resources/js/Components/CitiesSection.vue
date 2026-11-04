@@ -70,7 +70,7 @@ const getExcerpt = (art) => {
           class="px-2.5 py-1 rounded transition-colors"
           :class="activeCityKey === city.key
             ? 'bg-[#C8102E] text-white font-bold shadow-sm'
-            : 'text-muted hover:text-ink hover:bg-surface'"
+            : 'text-muted dark:text-zinc-300 hover:text-ink hover:bg-surface dark:hover:bg-zinc-800'"
         >
           {{ locale === 'hi' ? city.name_hi : city.name }}
         </button>
@@ -108,17 +108,17 @@ const getExcerpt = (art) => {
           <!-- Headline -->
           <Link
             :href="`/article/${art.slug}`"
-            class="font-serif font-bold text-sm sm:text-base text-ink group-hover:text-[#C8102E] transition-colors leading-snug line-clamp-3 mb-1.5 block"
+            class="font-serif font-bold text-sm sm:text-base text-ink dark:text-zinc-100 group-hover:text-[#C8102E] transition-colors leading-snug line-clamp-3 mb-1.5 block"
           >
             {{ getTitle(art) }}
           </Link>
 
-          <p class="font-editorial text-xs text-muted line-clamp-2 leading-relaxed">
+          <p class="font-editorial text-xs text-muted dark:text-zinc-300 line-clamp-2 leading-relaxed">
             {{ getExcerpt(art) }}
           </p>
         </div>
 
-        <div class="mt-3 pt-2 border-t border-dashed border-border flex items-center justify-between text-[11px] font-mono text-muted">
+        <div class="mt-3 pt-2 border-t border-dashed border-border flex items-center justify-between text-[11px] font-mono text-muted dark:text-zinc-400">
           <span>{{ art.reading_time || 3 }} MIN READ</span>
           <Link :href="`/article/${art.slug}`" class="text-[#C8102E] hover:underline font-bold">
             Full Story →

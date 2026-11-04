@@ -9,45 +9,96 @@
    1. EDITORIAL COLOR SYSTEM (CSS VARIABLES FOR LIGHT / DARK MODE)
    ========================================================================== */
 :root {
-    --color-ink: #0B0F19;
-    --color-paper: #FFFFFF;
-    --color-surface: #FAF8F5;
-    --color-border: #E7E2DA;
-    --color-accent: #C8102E;
-    --color-accent-hover: #A00D24;
-    --color-muted: #5B6475;
-    --color-muted-light: #8E97A6;
-    --rule-color: #E7E2DA;
-    --rule-bold: #0B0F19;
+    --editorial-ink: #0F141E;
+    --editorial-paper: #FFFFFF;
+    --editorial-surface: #FAF8F5;
+    --editorial-border: #E5E7EB;
+    --editorial-accent: #C8102E;
+    --editorial-accent-hover: #A00D24;
+    --editorial-muted: #4B5563;
+    --editorial-muted-light: #9CA3AF;
+    --rule-color: #E5E7EB;
+    --rule-bold: #0F141E;
 }
 
 .dark {
-    --color-ink: #E8EAF0;
-    --color-paper: #0B0F19;
-    --color-surface: #121826;
-    --color-border: #232B3B;
-    --color-accent: #C8102E;
-    --color-accent-hover: #E01E3D;
-    --color-muted: #8892A6;
-    --color-muted-light: #5B6475;
-    --rule-color: #232B3B;
-    --rule-bold: #E8EAF0;
+    --editorial-ink: #F3F4F6;
+    --editorial-paper: #0B0F19;
+    --editorial-surface: #121826;
+    --editorial-border: #27272A;
+    --editorial-accent: #C8102E;
+    --editorial-accent-hover: #E01E3D;
+    --editorial-muted: #9CA3AF;
+    --editorial-muted-light: #6B7280;
+    --rule-color: #27272A;
+    --rule-bold: #F3F4F6;
 }
 
 @theme {
-    --color-ink: var(--color-ink);
-    --color-paper: var(--color-paper);
-    --color-surface: var(--color-surface);
-    --color-border: var(--color-border);
-    --color-accent: var(--color-accent);
-    --color-accent-hover: var(--color-accent-hover);
-    --color-muted: var(--color-muted);
+    --color-ink: var(--editorial-ink);
+    --color-paper: var(--editorial-paper);
+    --color-surface: var(--editorial-surface);
+    --color-border: var(--editorial-border);
+    --color-accent: var(--editorial-accent);
+    --color-accent-hover: var(--editorial-accent-hover);
+    --color-muted: var(--editorial-muted);
 
     --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
     --font-editorial: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
     --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-hindi: 'Noto Sans Devanagari', 'Inter', sans-serif;
     --font-hindi-serif: 'Noto Serif Devanagari', 'Noto Sans Devanagari', Georgia, serif;
+}
+
+/* ==========================================================================
+   EXPLICIT THEME FALLBACK UTILITIES (GUARANTEED WCAG CONTRAST ON ALL SCREENS)
+   ========================================================================== */
+.text-ink {
+    color: var(--editorial-ink, #0F141E);
+}
+.dark .text-ink,
+.dark .dark\:text-ink {
+    color: #F3F4F6 !important;
+}
+
+.text-muted {
+    color: var(--editorial-muted, #4B5563);
+}
+.dark .text-muted,
+.dark .dark\:text-muted {
+    color: #9CA3AF !important;
+}
+
+.bg-paper {
+    background-color: var(--editorial-paper, #FFFFFF);
+}
+.dark .bg-paper,
+.dark .dark\:bg-paper {
+    background-color: #0B0F19 !important;
+}
+
+.bg-surface {
+    background-color: var(--editorial-surface, #FAF8F5);
+}
+.dark .bg-surface,
+.dark .dark\:bg-surface {
+    background-color: #121826 !important;
+}
+
+.border-border {
+    border-color: var(--editorial-border, #E5E7EB);
+}
+.dark .border-border,
+.dark .dark\:border-border {
+    border-color: #27272A !important;
+}
+
+.border-ink {
+    border-color: var(--editorial-ink, #0F141E);
+}
+.dark .border-ink,
+.dark .dark\:border-ink {
+    border-color: #F3F4F6 !important;
 }
 
 /* ==========================================================================
