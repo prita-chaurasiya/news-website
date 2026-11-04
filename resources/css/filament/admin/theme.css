@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@import '../../../../vendor/filament/filament/resources/css/base.css';
+
+@config 'tailwind.config.js';
+
+/* The Chronicle Premium Editorial Filament Theme */
+.fi-header-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+.fi-section,
+.fi-ta-ctn,
+.fi-wi-stats-overview-stat,
+.fi-wi-widget {
+    border-radius: 0.75rem !important; /* rounded-xl */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04) !important; /* subtle shadow */
+    border: 1px solid rgba(220, 220, 225, 0.6) !important;
+}
+
+.dark .fi-section,
+.dark .fi-ta-ctn,
+.dark .fi-wi-stats-overview-stat,
+.dark .fi-wi-widget {
+    border-color: rgba(35, 43, 59, 0.8) !important;
+    background-color: #121826 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-btn {
+    border-left: 3px solid #C8102E;
+}
+
+.fi-btn-primary {
+    background-color: #C8102E !important;
+}
+.fi-btn-primary:hover {
+    background-color: #A00D24 !important;
+}
