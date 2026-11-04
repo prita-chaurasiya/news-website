@@ -10,6 +10,9 @@
     "subscribe": "Subscribe",
     "signIn": "Sign In",
     "myAccount": "My Account",
+    "adminDashboard": "Admin Dashboard",
+    "savedArticles": "Saved Articles",
+    "signOut": "Sign Out",
     "search": "Search news, topics, authors...",
     "searchBtn": "Search",
     "menu": "Sections"

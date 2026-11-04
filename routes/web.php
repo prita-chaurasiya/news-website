@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SearchController;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,49 @@ Route::get('/admin/demo-login', function () {
 
     return redirect('/admin');
 })->name('admin.demo-login');
+
+// Instant 1-Click Demo Reader Login (for testing normal reader view)
+Route::get('/demo-reader-login', function () {
+    $reader = User::where('email', 'reader@news.com')->first();
+    if ($reader) {
+        Auth::login($reader);
+    }
+
+    return redirect('/');
+})->name('reader.demo-login');
+
+// Redirect /dashboard: Admins/Editors -> /admin, Normal readers / Guests -> /
+Route::get('/dashboard', function () {
+    $user = Auth::user();
+    if ($user && $user->canAccessAdmin()) {
+        return redirect('/admin');
+    }
+
+    return redirect('/');
+})->name('dashboard');
+
+// Redirect /login: Authenticated admins -> /admin, Authenticated readers -> /, Guests -> /admin/login
+Route::get('/login', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user && $user->canAccessAdmin()) {
+            return redirect('/admin');
+        }
+
+        return redirect('/');
+    }
+
+    return redirect('/admin/login');
+})->name('login');
+
+// Session Logout
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+})->name('logout');
 
 // 2. Article Routes
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');

@@ -68,6 +68,7 @@ class HandleInertiaRequests extends Middleware
                     'email' => $request->user()->email,
                     'role' => $request->user()->role,
                     'avatar' => $request->user()->avatar,
+                    'can_access_panel' => $request->user()->canAccessAdmin(),
                 ] : null,
             ],
             'locale' => $locale,

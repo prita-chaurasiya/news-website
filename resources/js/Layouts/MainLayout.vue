@@ -20,6 +20,7 @@ import {
   Bookmark,
   LogOut,
   ArrowUp,
+  LayoutDashboard,
 } from 'lucide-vue-next';
 
 const { locale, t } = useI18n();
@@ -80,6 +81,13 @@ const categories = computed(() => {
 const footerCategories = computed(() => categories.value.slice(0, 6));
 const siteSettings = computed(() => page.props.siteSettings || {});
 const authUser = computed(() => page.props.auth?.user || null);
+const canAccessAdmin = computed(() => {
+  if (!authUser.value) return false;
+  if (authUser.value.can_access_panel !== undefined) {
+    return Boolean(authUser.value.can_access_panel);
+  }
+  return ['admin', 'editor', 'journalist'].includes(authUser.value.role);
+});
 
 // Weather Data
 const weatherData = computed(() => {
@@ -287,23 +295,23 @@ onUnmounted(() => {
                 <p class="text-[10px] text-gray-500 dark:text-zinc-400 truncate">{{ authUser.email }}</p>
               </div>
 
-              <Link
-                v-if="authUser.email === 'admin@news.com' || (authUser.roles && authUser.roles.length)"
+              <a
+                v-if="canAccessAdmin"
                 href="/admin"
                 @click="isUserMenuOpen = false"
-                class="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-[#C8102E]"
+                class="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-[#C8102E] transition-colors"
               >
-                <Shield class="w-3.5 h-3.5 text-[#C8102E]" />
-                <span>Admin Dashboard</span>
-              </Link>
+                <LayoutDashboard class="w-3.5 h-3.5 text-[#C8102E]" />
+                <span>{{ $t('nav.adminDashboard') }}</span>
+              </a>
 
               <Link
                 href="/bookmarks"
                 @click="isUserMenuOpen = false"
-                class="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-[#C8102E]"
+                class="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-zinc-300 hover:bg-gray-50 dark:hover:bg-zinc-800 hover:text-[#C8102E] transition-colors"
               >
                 <Bookmark class="w-3.5 h-3.5 text-gray-400" />
-                <span>Saved Articles</span>
+                <span>{{ $t('nav.savedArticles') }}</span>
               </Link>
 
               <div class="border-t border-gray-100 dark:border-zinc-800 my-1"></div>
@@ -315,7 +323,7 @@ onUnmounted(() => {
                   class="w-full flex items-center gap-2 px-3 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 text-left transition-colors font-medium"
                 >
                   <LogOut class="w-3.5 h-3.5" />
-                  <span>Sign Out</span>
+                  <span>{{ $t('nav.signOut') }}</span>
                 </button>
               </form>
             </div>

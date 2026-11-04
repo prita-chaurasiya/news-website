@@ -151,4 +151,55 @@ class FilamentAdminTest extends TestCase
         $comment->update(['status' => 'rejected']);
         $this->assertEquals('rejected', $comment->fresh()->status);
     }
+
+    public function test_dashboard_route_redirects_admin_to_filament_admin(): void
+    {
+        $admin = User::where('email', 'admin@demo.com')->first();
+        $response = $this->actingAs($admin)->get('/dashboard');
+        $response->assertRedirect('/admin');
+    }
+
+    public function test_dashboard_route_redirects_reader_to_homepage(): void
+    {
+        $user = User::where('role', 'user')->first() ?? User::factory()->create(['role' => 'user']);
+        $response = $this->actingAs($user)->get('/dashboard');
+        $response->assertRedirect('/');
+    }
+
+    public function test_dashboard_route_redirects_guest_to_homepage(): void
+    {
+        $response = $this->get('/dashboard');
+        $response->assertRedirect('/');
+    }
+
+    public function test_login_route_redirects_admin_to_filament_admin(): void
+    {
+        $admin = User::where('email', 'admin@demo.com')->first();
+        $response = $this->actingAs($admin)->get('/login');
+        $response->assertRedirect('/admin');
+    }
+
+    public function test_login_route_redirects_reader_to_homepage(): void
+    {
+        $user = User::where('role', 'user')->first() ?? User::factory()->create(['role' => 'user']);
+        $response = $this->actingAs($user)->get('/login');
+        $response->assertRedirect('/');
+    }
+
+    public function test_login_route_redirects_guest_to_admin_login(): void
+    {
+        $response = $this->get('/login');
+        $response->assertRedirect('/admin/login');
+    }
+
+    public function test_inertia_auth_props_include_can_access_panel(): void
+    {
+        $admin = User::where('email', 'admin@demo.com')->first();
+        $response = $this->actingAs($admin)->get('/');
+        $response->assertInertia(fn ($page) => $page->where('auth.user.can_access_panel', true));
+
+        $reader = User::where('role', 'user')->first() ?? User::factory()->create(['role' => 'user']);
+        $response = $this->actingAs($reader)->get('/');
+        $response->assertInertia(fn ($page) => $page->where('auth.user.can_access_panel', false));
+    }
 }
