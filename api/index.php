@@ -32,6 +32,11 @@ if (! getenv('VIEW_COMPILED_PATH')) {
     $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 }
 
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    $_SERVER['HTTPS'] = 'on';
+    $_SERVER['SERVER_PORT'] = 443;
+}
+
 // 3. Setup SQLite database in /tmp
 $tmpDb = '/tmp/database.sqlite';
 $sourceDb = __DIR__.'/../database/database.sqlite';
