@@ -59,8 +59,24 @@ class HandleInertiaRequests extends Middleware
             return Ad::where('is_active', true)->get()->keyBy('slot')->toArray();
         });
 
+        $previewTheme = $request->query('theme');
+        $activeTheme = in_array($previewTheme, ['editorial', 'portal'])
+            ? $previewTheme
+            : ($siteSettings['site_theme'] ?? config('theme.active', 'editorial'));
+
         return [
             ...parent::share($request),
+            'theme' => $activeTheme,
+            'trendingTopics' => [
+                ['title' => '#T20WorldCup', 'url' => '/search?q=sports'],
+                ['title' => '#Budget2026', 'url' => '/search?q=budget'],
+                ['title' => '#SensexRecord', 'url' => '/search?q=business'],
+                ['title' => '#AIRevolution', 'url' => '/search?q=tech'],
+                ['title' => '#Elections2026', 'url' => '/search?q=politics'],
+                ['title' => '#Chandrayaan4', 'url' => '/search?q=science'],
+                ['title' => '#HealthTips', 'url' => '/search?q=health'],
+                ['title' => '#AutoExpo', 'url' => '/search?q=auto'],
+            ],
             'auth' => [
                 'user' => $request->user() ? [
                     'id' => $request->user()->id,

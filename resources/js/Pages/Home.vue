@@ -1,12 +1,15 @@
 <script setup>
 import { computed } from 'vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import MainLayout from '@/Layouts/MainLayout.vue';
+import PortalHome from '@/Pages/Portal/PortalHome.vue';
 import BreakingTicker from '@/Components/BreakingTicker.vue';
 import MarketTicker from '@/Components/MarketTicker.vue';
 import HeroGrid from '@/Components/HeroGrid.vue';
 import TopStoriesStrip from '@/Components/TopStoriesStrip.vue';
 import EditorsPicksBand from '@/Components/EditorsPicksBand.vue';
+import ExplainedSection from '@/Components/ExplainedSection.vue';
+import CitiesSection from '@/Components/CitiesSection.vue';
 import LiveBlogCard from '@/Components/LiveBlogCard.vue';
 import TrendingList from '@/Components/TrendingList.vue';
 import LatestNews from '@/Components/LatestNews.vue';
@@ -94,6 +97,9 @@ const topStoriesList = computed(() => {
   return props.secondaryStories.slice(0, 5);
 });
 
+const page = usePage();
+const activeTheme = computed(() => page.props.theme || 'editorial');
+
 const editorsPicks = computed(() => {
   if (props.secondaryStories && props.secondaryStories.length >= 3) {
     return props.secondaryStories.slice(0, 3);
@@ -103,7 +109,8 @@ const editorsPicks = computed(() => {
 </script>
 
 <template>
-  <MainLayout>
+  <PortalHome v-if="activeTheme === 'portal'" v-bind="$props" />
+  <MainLayout v-else>
     <Head>
       <title>Independent Journalism. Global Perspective.</title>
       <meta name="description" content="The Chronicle provides fearless investigative journalism, ground reports, market analysis, and global affairs." />
@@ -119,19 +126,26 @@ const editorsPicks = computed(() => {
 
     <!-- 3. MAIN HOMEPAGE CONTENT WRAPPER -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <!-- HERO SECTION: 1 Lead Story + 4 Secondary Stories -->
+      <!-- HERO SECTION: Indian Express 3-Column Grid -->
       <HeroGrid
         :lead-story="leadStory"
         :secondary-stories="secondaryStories"
+        :opinion-stories="opinionStories"
       />
 
-      <!-- HORIZONTAL "TOP STORIES" NUMBERED STRIP (Axios / NYT style) -->
+      <!-- HORIZONTAL "TOP STORIES" NUMBERED STRIP -->
       <TopStoriesStrip :articles="topStoriesList" />
+
+      <!-- SIGNATURE INDIAN EXPRESS "EXPLAINED" SECTION -->
+      <ExplainedSection :articles="secondaryStories" />
 
       <!-- LIVE BLOG CARD -->
       <div id="live-blog" class="my-8">
         <LiveBlogCard :live-blog="liveBlog" />
       </div>
+
+      <!-- INDIAN EXPRESS "EYE ON THE NATION" CITIES SECTION -->
+      <CitiesSection :articles="latestNews" />
 
       <!-- PRIMARY 2-COLUMN SPLIT (Section gap: 64px - 96px) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8 sm:my-12">

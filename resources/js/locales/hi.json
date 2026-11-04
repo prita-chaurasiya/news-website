@@ -13,6 +13,7 @@
     "adminDashboard": "एडमिन डैशबोर्ड",
     "savedArticles": "सहेजे गए लेख",
     "signOut": "लॉग आउट",
+    "explained": "एक्सप्लेंड",
     "search": "समाचार, विषय, लेखक खोजें...",
     "searchBtn": "खोजें",
     "menu": "सेक्शन"
@@ -44,7 +45,11 @@
     "readEpaper": "आज का अंक पढ़ें",
     "viewAll": "सभी देखें",
     "minRead": "मिनट पढ़ें",
-    "keyTakeaways": "मुख्य बिंदु"
+    "keyTakeaways": "मुख्य बिंदु",
+    "explainedTitle": "एक्सप्लेंड",
+    "explainedSubtitle": "खबरों के पीछे का संपूर्ण संदर्भ, कानूनी व आर्थिक विश्लेषण",
+    "citiesTitle": "शहर और राज्य",
+    "citiesSubtitle": "देश के प्रमुख शहरों और राज्यों से ज़मीनी रिपोर्ट्स"
   },
   "article": {
     "published": "प्रकाशित",

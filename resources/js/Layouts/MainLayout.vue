@@ -230,6 +230,20 @@ onUnmounted(() => {
               <option value="bengaluru">Bengaluru</option>
             </select>
           </div>
+
+          <span class="hidden xl:inline text-gray-300 dark:text-zinc-700">•</span>
+
+          <!-- Indian Express Regional Editions Quick Links -->
+          <div class="hidden xl:flex items-center gap-1.5 text-[10px] text-gray-500 font-mono">
+            <span class="font-bold text-gray-700 dark:text-zinc-300">EDITIONS:</span>
+            <a href="#cities" class="hover:text-[#C8102E] transition-colors">DELHI</a>
+            <span>•</span>
+            <a href="#cities" class="hover:text-[#C8102E] transition-colors">MUMBAI</a>
+            <span>•</span>
+            <a href="#cities" class="hover:text-[#C8102E] transition-colors">BENGALURU</a>
+            <span>•</span>
+            <a href="#cities" class="hover:text-[#C8102E] transition-colors">KOLKATA</a>
+          </div>
         </div>
 
         <!-- Right Side: Lang, Dark Mode, Auth & Subscribe -->
@@ -431,6 +445,15 @@ onUnmounted(() => {
               <span class="relative inline-flex rounded-full h-2 w-2 bg-[#C8102E]"></span>
             </span>
             <span>{{ $t('nav.live') }}</span>
+          </a>
+
+          <!-- EXPLAINED Badge Link (Indian Express Signature) -->
+          <a
+            href="#explained"
+            class="relative h-full flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink hover:text-[#C8102E] transition-colors whitespace-nowrap after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C8102E] after:transition-transform after:duration-200 after:scale-x-0 hover:after:scale-x-100"
+          >
+            <span>{{ $t('nav.explained') }}</span>
+            <span class="bg-[#C8102E] text-white text-[9px] font-black px-1.5 py-0.5 rounded-sm font-mono tracking-tight shadow-sm">NEW</span>
           </a>
 
           <!-- Dynamic Categories with guaranteed translations & notranslate protection -->
